@@ -1,5 +1,6 @@
 
 import Link from "next/link"
+import {motion} from 'framer-motion'
 
 
 export default function Form({
@@ -11,11 +12,19 @@ export default function Form({
   return (
     <div>
       <section className="w-full max-w-full flex-start flex-col">
-        <h1 className="head_text text-left">
+        <motion.h1 className="head_text text-left"
+        initial={{
+          // y:-10,
+          rotateX:-90
+        }}
+        animate={{rotateX:0}}
+        transition={{delay:0.5}}
+        >
+
           <span className="blue_gradient">
             {type} Post
           </span>
-        </h1>
+        </motion.h1>
         <p className="desc text-left max-w-md">
           {type} and share amazing prompts with the world, and let your imagination run wild with any AI-powered platform.
         </p>
@@ -38,6 +47,33 @@ export default function Form({
 
             </textarea>
           </label>
+          <label>
+            <span className="font-satoshi font-semibold text-base text-gray-700">
+              Tag
+              <span className="font-normal"> (#product, #webdevelopment, #idea)</span>
+            </span>
+            <input 
+              value={post.tag}
+              onChange={(e)=>setPost({...post,tag:e.target.value})}
+              placeholder="#tag"
+              required
+              className="form_input"
+            >
+
+            </input>
+          </label>
+          <div className="flex-end mx-3 mb-5 gap-4">
+            <Link
+              href="/"
+              className="text-gray-500 text-sm"
+            >Cancel</Link>
+            <button type="submit"
+              disabled={submitting}
+              className="px-5 py-1.5 bg-primary-orange text-sm rounded-full text-white"
+            >
+              {submitting?`${type}...`:type}
+            </button>
+          </div>
 
          </form>
       </section>

@@ -32,7 +32,7 @@ const CreatePrompt = () => {
     }catch(err){
       console.log(err);
     }finally{
-
+      setSubmitting(false)
     }
   }
   return (

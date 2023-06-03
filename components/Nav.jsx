@@ -29,13 +29,15 @@ export default function Nav() {
             <Link href='/create-prompt'
             className="black_btn">Create prompt</Link>
             <button type="button" onClick={signOut} className="outline_btn">Sign Out</button>
-            <Image
-              src={session?.user.image}
-              width={37}
-              height={37}
-              className="rounded-full"
-              alt="profile"
-            />
+            <Link href='/profile'>
+              <Image
+                src={session?.user.image}
+                width={37}
+                height={37}
+                className="rounded-full"
+                alt="profile"
+              />
+            </Link>
           </div>
         ):(
           <>
@@ -73,7 +75,10 @@ export default function Nav() {
               >
                 Create Prompt
               </Link>
-              <button type="button" onClick={()=>{settoggleDropdown(false)}} className="mt-5 w-full black_btn">Sign out</button>
+              <button type="button" onClick={()=>{
+                settoggleDropdown(false)
+                signOut()
+              }} className="mt-5 w-full black_btn">Sign out</button>
             </div>
           )}
           </div>
